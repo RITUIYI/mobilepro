@@ -13,6 +13,9 @@ Vue.use(Vant)
 import 'postcss-pxtorem'//导入 并在postcss.config.js 进行配置
 import 'amfe-flexible/' //导入即可  动态匹配当前设备宽度
 
+//导入公共样式
+import '@/assets/css/base.less'
+
 Vue.config.productionTip = false
 
 new Vue({
