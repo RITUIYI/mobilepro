@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-nav-bar class="my-nav-bar" title="标题" />
+    <van-nav-bar class="my-nav-bar" title="登录" />
     <form class="login-wrap">
       <van-cell-group>
         <van-field
@@ -37,7 +37,8 @@
 </template>
 
 <script>
-import { login } from "../../utils/http/";
+import { login } from "@/api/author.js";
+import { setUser, getUser } from "../../utils/storage/";
 export default {
   name: "login",
   data() {
@@ -74,12 +75,17 @@ export default {
       //如果表单数据不合法 直接返回
       if (this.checkmobile == "" && this.checkCode == "") {
         //合法则发送请求
-        let res = await login(this.form);
-        console.log(res);
-        //把登陆成功获取到的token存到sessionStorage中
-        window.sessionStorage.setItem("token", JSON.stringify(res.data.data.token));
-        this.$store.commit('setToken',res.data.data.token)
-        this.$router.push('/home');
+        try {
+          let res = await login(this.form);
+          //把登陆成功获取到的token存到localStorage中  并存入 vuex中
+          setUser(res.data.data);
+          this.$store.commit("setToken", res.data.data);
+          this.$router.push("/tabbar");
+        } catch (error) {
+          console.log(error);
+
+          this.$toast.fail("手机号或者验证码错误");
+        }
       } else {
         return;
       }

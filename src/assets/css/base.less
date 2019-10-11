@@ -1,8 +1,23 @@
 .my-nav-bar {
+    position: relative;
     width: 100%;
     height: 44px;
+    z-index: 1;
     background-color: #1989fa;
     .van-nav-bar__title {
         color: #fff;
     }
+    .van-icon {
+        color: #fff;
+        font-size: 20px;
+    }
+    .van-nav-bar__text {
+        color: #fff;
+    }
+}
+.nav-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999 !important;
 }
