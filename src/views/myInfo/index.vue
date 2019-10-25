@@ -72,7 +72,7 @@
       <div class="user-block">
         <van-cell-group>
           <van-cell title="用户反馈" is-link to="index" />
-          <van-cell title="小西同学" is-link to="index" />
+          <van-cell title="小西同学" is-link to="/chat" />
           <van-cell title="系统设置" is-link to="index" />
         </van-cell-group>
       </div>
